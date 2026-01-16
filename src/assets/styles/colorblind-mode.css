@@ -1,0 +1,157 @@
+/* ============================================
+   MODO DALTÓNICO / COLORBLIND MODE
+   ============================================ */
+
+/*
+   Este modo utiliza una paleta de colores diseñada
+   específicamente para personas con daltonismo.
+   
+   Utiliza colores que son distinguibles para los
+   tipos más comunes de daltonismo:
+   - Deuteranopía (falta de verde)
+   - Protanopía (falta de rojo)
+   - Tritanopía (falta de azul-amarillo)
+*/
+
+body.colorblind-mode {
+  /* Colores principales - Paleta de contraste alto */
+  --color-primary: #0173B2;        /* Azul oscuro */
+  --color-primary-hover: #004a88;  /* Azul más oscuro */
+  --color-secondary: #DE8F05;      /* Naranja oscuro */
+  --color-secondary-hover: #bb7504; /* Naranja más oscuro */
+  --color-accent: #CC78BC;         /* Púrpura */
+}
+
+/* Estilos específicos para modo daltónico */
+body.colorblind-mode {
+  /* Aumentar contraste general */
+  --text-primary: #1a1a1a;
+  --text-secondary: #4a4a4a;
+  --text-muted: #6a6a6a;
+  --text-heading: #000000;
+  
+  /* Bordes más visibles */
+  --border-color: #555555;
+  --border-light: #888888;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.colorblind-mode {
+    --color-primary: #00B0FF;
+    --color-secondary: #FFB81C;
+    --color-accent: #FF6EC7;
+    
+    --text-primary: #f5f5f5;
+    --text-secondary: #d0d0d0;
+    --text-muted: #a0a0a0;
+    --text-heading: #ffffff;
+    
+    --border-color: #999999;
+    --border-light: #666666;
+  }
+}
+
+/* Aumentar contrastes en elementos interactivos */
+body.colorblind-mode .btn,
+body.colorblind-mode .card,
+body.colorblind-mode .form-control {
+  border-width: 2px;
+  border-color: var(--border-color);
+}
+
+body.colorblind-mode .btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.colorblind-mode .btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+}
+
+body.colorblind-mode .btn-secondary {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+body.colorblind-mode .btn-secondary:hover {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+}
+
+/* Patrón de puntos para estrellas en lugar de solo color */
+body.colorblind-mode .fa-star {
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+  filter: brightness(1.2);
+}
+
+/* Mejorar legibilidad de iconos */
+body.colorblind-mode .bi,
+body.colorblind-mode .fa {
+  filter: brightness(1.1) contrast(1.1);
+}
+
+/* Bordes más prominentes en tarjetas */
+body.colorblind-mode .card {
+  border-left: 5px solid var(--color-primary);
+}
+
+body.colorblind-mode .game-card {
+  border: 2px solid var(--border-color);
+}
+
+/* Aumentar tamaño de fuente ligeramente */
+body.colorblind-mode {
+  font-size: 16px;
+}
+
+body.colorblind-mode .btn,
+body.colorblind-mode .form-control,
+body.colorblind-mode a {
+  font-size: 1rem;
+}
+
+/* Mejorar visibilidad de enlaces */
+body.colorblind-mode a {
+  text-decoration: underline;
+  font-weight: 500;
+}
+
+body.colorblind-mode a:hover {
+  text-decoration: underline;
+}
+
+/* Indicadores visuales más fuertes */
+body.colorblind-mode .form-control:focus {
+  border-width: 2px;
+  box-shadow: 0 0 0 4px rgba(1, 115, 178, 0.1);
+}
+
+/* ============================================
+   PATRONES PARA DIFERENCIACIÓN DE COLORES
+   ============================================ */
+
+/* Usar patrones además de colores */
+body.colorblind-mode .alert-danger::before {
+  content: '⚠ ';
+  font-weight: bold;
+}
+
+body.colorblind-mode .alert-success::before {
+  content: '✓ ';
+  font-weight: bold;
+}
+
+body.colorblind-mode .alert-info::before {
+  content: 'ℹ ';
+  font-weight: bold;
+}
+
+body.colorblind-mode .alert-warning::before {
+  content: '! ';
+  font-weight: bold;
+}

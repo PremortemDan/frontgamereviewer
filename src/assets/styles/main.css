@@ -1,0 +1,354 @@
+/* ============================================
+   VARIABLES CSS - SISTEMA DE TEMAS
+   ============================================ */
+
+:root {
+  /* Colores principales */
+  --color-primary: #667eea;
+  --color-primary-hover: #5568d3;
+  --color-secondary: #764ba2;
+  --color-secondary-hover: #684392;
+  --color-accent: #f39c12;
+  
+  /* Colores de fondo */
+  --bg-body: #f5f5f5;
+  --bg-card: #ffffff;
+  --bg-header: #2c3e50;
+  --bg-input: #ffffff;
+  --bg-hover: #f9f9f9;
+  
+  /* Colores de texto */
+  --text-primary: #333333;
+  --text-secondary: #666666;
+  --text-muted: #7f8c8d;
+  --text-heading: #2c3e50;
+  --text-light: #ffffff;
+  
+  /* Bordes y sombras */
+  --border-color: #dddddd;
+  --border-light: #eeeeee;
+  --shadow-sm: 0 2px 5px rgba(0, 0, 0, 0.1);
+  --shadow-md: 0 3px 10px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 5px 15px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 8px 20px rgba(0, 0, 0, 0.15);
+  
+  /* Transiciones */
+  --transition-speed: 0.3s;
+  --transition-ease: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ============================================
+   MODO OSCURO
+   ============================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-primary: #5dade2;
+    --color-primary-hover: #3498db;
+    --color-secondary: #8b7aad;
+    --color-secondary-hover: #7a6a9c;
+    --color-accent: #f5b041;
+    
+    --bg-body: #1a1a1a;
+    --bg-card: #2d2d2d;
+    --bg-header: #1e1e1e;
+    --bg-input: #3a3a3a;
+    --bg-hover: #3a3a3a;
+    
+    --text-primary: #e8e8e8;
+    --text-secondary: #b8b8b8;
+    --text-muted: #888888;
+    --text-heading: #f0f0f0;
+    --text-light: #ffffff;
+    
+    --border-color: #404040;
+    --border-light: #333333;
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 6px 20px rgba(0, 0, 0, 0.5);
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ============================================
+   ESTILOS GENERALES
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  background-color: var(--bg-body);
+  color: var(--text-primary);
+  line-height: 1.6;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  transition: background-color var(--transition-speed) var(--transition-ease),
+              color var(--transition-speed) var(--transition-ease);
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+#app-layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  z-index: 1;
+}
+
+/* ============================================
+   COMPONENTES GENERALES
+   ============================================ */
+
+.container {
+  position: relative;
+  z-index: 1;
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+  transition: color var(--transition-speed);
+}
+
+a:hover {
+  color: var(--color-primary-hover);
+}
+
+button {
+  cursor: pointer;
+  transition: all var(--transition-speed);
+}
+
+/* ============================================
+   TARJETAS Y CONTENEDORES
+   ============================================ */
+
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-speed);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-hover);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   FORMULARIOS
+   ============================================ */
+
+.form-control {
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--border-color);
+  transition: all var(--transition-speed);
+}
+
+.form-control:focus {
+  background-color: var(--bg-input);
+  color: var(--text-primary);
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+}
+
+.form-label {
+  color: var(--text-heading);
+  font-weight: 500;
+}
+
+/* ============================================
+   BOTONES
+   ============================================ */
+
+.btn {
+  border-radius: 4px;
+  font-weight: 500;
+  transition: all var(--transition-speed);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-light);
+}
+
+.btn-primary:hover {
+  background-color: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  transform: translateY(-2px);
+}
+
+.btn-outline-primary {
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-light);
+}
+
+.btn-secondary {
+  background-color: var(--color-secondary);
+  border-color: var(--color-secondary);
+  color: var(--text-light);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-secondary-hover);
+  border-color: var(--color-secondary-hover);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ENTRADA Y NAVEGACIÓN
+   ============================================ */
+
+.input-group {
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.navbar {
+  background-color: var(--bg-header) !important;
+  box-shadow: var(--shadow-sm);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: var(--text-light) !important;
+  letter-spacing: 0.5px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.7) !important;
+  transition: color var(--transition-speed);
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--text-light) !important;
+}
+
+/* ============================================
+   PAGINACIÓN
+   ============================================ */
+
+.pagination {
+  gap: 0.5rem;
+}
+
+.page-link {
+  color: var(--color-primary);
+  border-color: var(--border-color);
+  background-color: var(--bg-card);
+}
+
+.page-link:hover {
+  color: var(--text-light);
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.page-item.active .page-link {
+  background-color: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--text-light);
+}
+
+.page-item.disabled .page-link {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ============================================
+   ALERTAS
+   ============================================ */
+
+.alert {
+  border: none;
+  border-radius: 8px;
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   MODOS ESPECIALES
+   ============================================ */
+
+/* Modo daltónico */
+body.colorblind-mode {
+  --color-primary: #0173B2;
+  --color-accent: #DE8F05;
+  --color-secondary: #CC78BC;
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 0 10px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
+
+  h2 {
+    font-size: 1.25rem;
+  }
+
+  .btn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+    padding: 0 8px;
+  }
+
+  .card {
+    border-radius: 4px;
+  }
+
+  .navbar {
+    padding: 0.5rem 0;
+  }
+}
