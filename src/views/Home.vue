@@ -1,5 +1,12 @@
 <template>
   <div class="container py-4">
+    <!-- Admin Button -->
+    <div class="d-flex justify-content-end mb-3">
+      <button @click="goToAdmin" class="btn btn-outline-primary">
+        <i class="bi bi-gear-fill"></i> Ir a Administración
+      </button>
+    </div>
+
     <!-- Search Section -->
     <section class="search-section mb-4">
       <h2 class="mb-3">
@@ -96,9 +103,11 @@
 
 <script setup>
 import { ref, computed, onMounted } from 'vue'
+import { useRouter } from 'vue-router'
 import GameCard from '../components/GameCard.vue'
 import { useGamesAPI } from '../composables/useApi'
 
+const router = useRouter()
 const gamesAPI = useGamesAPI()
 
 const searchQuery = ref('')
@@ -311,6 +320,10 @@ const nextPage = () => {
 
 const goToPage = (page) => {
   currentPage.value = page
+}
+
+const goToAdmin = () => {
+  router.push('/admin')
 }
 
 onMounted(() => {
