@@ -151,7 +151,7 @@ const submitRegister = async () => {
     const response = await authAPI.register({
       username: form.value.username,
       email: form.value.email,
-      password: form.value.password
+      contrasenaHash: form.value.password
     })
 
     if (response && (response.success || response.user)) {
