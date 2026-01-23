@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://backgamereviewer.onrender.com/api'
-const API_TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 10000
+const API_TIMEOUT = import.meta.env.VITE_API_TIMEOUT || 60000
 
 const API_CONFIG = {
   BASE_URL: API_BASE_URL,

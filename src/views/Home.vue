@@ -140,12 +140,46 @@ const visiblePages = computed(() => {
 const loadGames = async () => {
   loadingRecent.value = true
   loadingTopRated.value = true
+  
+  // Función para reintentar la petición
+  const fetchWithRetry = async (retries = 3, delay = 2000) => {
+    for (let i = 0; i < retries; i++) {
+      try {
+        console.log(`Intento ${i + 1} de ${retries} - Cargando juegos desde API...`)
+        const games = await gamesAPI.getAll()
+        
+        if (games && games.length > 0) {
+          console.log(`✅ Juegos cargados exitosamente: ${games.length} juegos`)
+          return games
+        }
+        
+        // Si no hay juegos pero tampoco error, esperar y reintentar
+        if (i < retries - 1) {
+          console.log(`⏳ Esperando ${delay}ms antes del siguiente intento...`)
+          await new Promise(resolve => setTimeout(resolve, delay))
+        }
+      } catch (error) {
+        console.error(`❌ Error en intento ${i + 1}:`, error.message)
+        
+        // Si no es el último intento, esperar antes de reintentar
+        if (i < retries - 1) {
+          console.log(`⏳ Esperando ${delay}ms antes de reintentar...`)
+          await new Promise(resolve => setTimeout(resolve, delay))
+        } else {
+          throw error // Lanzar el error solo en el último intento
+        }
+      }
+    }
+    return null
+  }
+  
   try {
-    let games = await gamesAPI.getAll()
+    const games = await fetchWithRetry(3, 3000) // 3 intentos, 3 segundos entre cada uno
     
-    // Usar datos de prueba si la API no devuelve nada
+    // Usar datos de prueba solo si después de todos los intentos no hay datos
     if (!games || games.length === 0) {
-      games = [
+      console.warn('⚠️ Usando datos de prueba - API no disponible después de múltiples intentos')
+      allGames.value = [
         {
           id: 1,
           titulo: 'The Witcher 3',
@@ -227,14 +261,14 @@ const loadGames = async () => {
           puntuacionUsuarios: 90
         }
       ]
-      console.warn('Usando datos de prueba - API no disponible')
+    } else {
+      allGames.value = games
     }
     
-    allGames.value = games
     currentPage.value = 1
   } catch (error) {
-    console.error('Error loading games:', error)
-    // Intentar con datos de prueba en error
+    console.error('❌ Error crítico cargando juegos:', error)
+    // Usar datos de prueba en caso de error después de reintentos
     allGames.value = [
       {
         id: 1,
